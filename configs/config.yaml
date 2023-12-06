@@ -20,6 +20,6 @@ data:
   api_key: ${API_KEY}
   address_message: ${ADDRESS_HOST}
   redis:
-    addr: 127.0.0.1:6379
+    addr: ${REDIS_ADDR}
     read_timeout: 0.2s
     write_timeout: 0.2s
