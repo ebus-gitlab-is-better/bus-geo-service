@@ -1,0 +1,96 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is documentation api for backend",
+        "title": "Bus Gep Service Swagger API",
+        "contact": {
+            "name": "Suro",
+            "url": "https://t.me/suronek",
+            "email": "suro@hyneo.ru"
+        },
+        "version": "1.0"
+    },
+    "host": "busgeo.e-bus.site",
+    "basePath": "/",
+    "paths": {
+        "/bus/{id}": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "chat"
+                ],
+                "summary": "Send bus data",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "format": "uint64",
+                        "description": "Bus ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "dto",
+                        "name": "dto",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/internal_route.BusDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "internal_route.BusDTO": {
+            "type": "object",
+            "properties": {
+                "battery": {
+                    "type": "integer"
+                },
+                "driverID": {
+                    "type": "string"
+                },
+                "lat": {
+                    "type": "number"
+                },
+                "lon": {
+                    "type": "number"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "authorization": {
+            "type": "apiKey",
+            "name": "authorization",
+            "in": "header"
+        }
+    }
+}

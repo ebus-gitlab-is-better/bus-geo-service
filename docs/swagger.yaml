@@ -1,0 +1,64 @@
+basePath: /
+definitions:
+  internal_route.BusDTO:
+    properties:
+      battery:
+        type: integer
+      driverID:
+        type: string
+      lat:
+        type: number
+      lon:
+        type: number
+    type: object
+host: busgeo.e-bus.site
+info:
+  contact:
+    email: suro@hyneo.ru
+    name: Suro
+    url: https://t.me/suronek
+  description: This is documentation api for backend
+  title: Bus Gep Service Swagger API
+  version: "1.0"
+paths:
+  /bus/{id}:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Bus ID
+        format: uint64
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: dto
+        in: body
+        name: dto
+        required: true
+        schema:
+          $ref: '#/definitions/internal_route.BusDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      summary: Send bus data
+      tags:
+      - chat
+securityDefinitions:
+  authorization:
+    in: header
+    name: authorization
+    type: apiKey
+swagger: "2.0"
