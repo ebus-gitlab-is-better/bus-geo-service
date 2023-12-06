@@ -48,7 +48,7 @@ func (r *busRepo) Update(ctx context.Context, bus *biz.Bus) error {
 		return err
 	}
 
-	r.data.cent.Publish(context.TODO(), "bus:public", busBytes)
+	r.data.cent.Publish(context.TODO(), "geo:public", busBytes)
 
 	return nil
 }
