@@ -35,7 +35,8 @@ func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*
 	goCloak := data.NewKeycloak(confData)
 	keycloakAPI := data.NewKeyCloakAPI(confData, goCloak, logger)
 	httpServer := server.NewHTTPServer(confServer, busUseCase, keycloakAPI, logger)
-	app := newApp(logger, grpcServer, httpServer)
+	customHTTP := server.NewCustomHttp(confServer, busUseCase, logger)
+	app := newApp(logger, grpcServer, httpServer, customHTTP)
 	return app, func() {
 		cleanup()
 	}, nil
